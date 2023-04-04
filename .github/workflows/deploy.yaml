@@ -7,5 +7,8 @@ jobs:
     name: Deploy whale
     runs-on: self-hosted
     steps:
-      - name: Test
-        run: uname -a
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Deploy containers
+        run: sudo docker-compose up -d
