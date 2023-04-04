@@ -5,6 +5,6 @@ services:
     ports:
       - 53:53
     volumes:
-      - bind9/db.imbrisa.conf:/etc/bind/db.imbrisa.conf
-      - bind9/named.conf.local:/etc/bind/named.conf.local
-      - bind9/named.conf.option:/etc/bind/named.conf.option
+      - ./bind9/db.imbrisa.conf:/etc/bind/db.imbrisa.conf
+      - ./bind9/named.conf.local:/etc/bind/named.conf.local
+      - ./bind9/named.conf.option:/etc/bind/named.conf.option
