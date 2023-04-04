@@ -1,0 +1,21 @@
+services:
+  bind9:
+    image: ubuntu/bind9:9.18-22.04_beta
+    container_name: bind9
+    networks:
+      - whale-network
+    ports:
+      - 53:53
+    volumes:
+      - bind9/db.imbrisa.conf:/etc/bind/db.imbrisa.conf
+      - bind9/named.conf.local:/etc/bind/named.conf.local
+      - bind9/named.conf.option:/etc/bind/named.conf.option
+
+# Network config
+networks:
+  whale-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.85.0/24
