@@ -1,0 +1,11 @@
+name: Deploy Whale
+on: 
+  workflow_dispatch:
+  push:
+jobs:  
+  deploy:
+    name: Deploy whale
+    runs-on: self-hosted
+    steps:
+      - name: Test
+        run: uname -a
