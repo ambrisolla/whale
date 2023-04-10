@@ -1,10 +1,62 @@
+# docker run --name dns-server -p 53:53/udp -p 5380:5380 -d technitium/dns-server
+
 services:
-  bind9:
-    image: ubuntu/bind9:9.18-22.04_beta
-    container_name: bind9
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
     ports:
-      - 53:53
+      - "80:80"
+      - "443:443"
+    environment:
+      no_proxy: "${NO_PROXY}"
+    networks:
+      whale-network:
+        ipv4_address: 192.168.85.2
     volumes:
-      - ./bind9/db.imbrisa.io:/etc/bind/db.imbrisa.io
-      - ./bind9/named.conf.local:/etc/bind/named.conf.local
-      - ./bind9/named.conf.option:/etc/bind/named.conf.option
+      - /srv/nginx/conf.d:/etc/nginx/conf.d
+      #- /srv/nginx/certs:/etc/nginx/certs
+      #- /srv/nginx/www:/www
+
+  dns-server:
+    image: technitium/dns-server
+    container_name: dns-server
+    ports:
+      - 53:53/udp
+    networks:
+      whale-network:
+        ipv4_address: 192.168.85.3
+    volumes:
+      - /etc/dns:/etc/dns
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    networks:
+      whale-network:
+        ipv4_address: 192.168.85.4
+    volumes:
+      - /var/lib/prometheus/data:/prometheus/data
+      - /srv/prometheus/targets:/etc/prometheus/targets
+      - /srv/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  
+  grafana:
+    image: grafana/grafana:latest-ubuntu
+    container_name: grafana
+    restart: always
+    user: "${UID}:${GID}"
+    environment:
+      no_proxy: "${NO_PROXY}"
+    networks:
+      whale-network:
+        ipv4_address: 192.168.85.5
+    volumes:
+      - /var/lib/grafana:/var/lib/grafana
+
+networks:
+  whale-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.85.0/24

@@ -1,4 +1,0 @@
-zone "imbrisa.io" {
-    type master;
-    file "/etc/bind/zones/db.imbrisa.io";
-};
