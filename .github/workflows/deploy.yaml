@@ -20,7 +20,9 @@ jobs:
             sudo docker rm -f $c
           done
 
-      
+      - name: Remove config files
+        run: sudo rm -rf /srv/*
+
       - name: Sync files
         run: sudo rsync -av srv/* /srv/* --delete
       
