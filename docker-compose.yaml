@@ -56,7 +56,7 @@ services:
       - /var/lib/grafana:/var/lib/grafana
   
   mysql:
-    image: mysql:latest
+    image: mariadb:latest
     container_name: mysql
     restart: always
     environment:
