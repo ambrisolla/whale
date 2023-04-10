@@ -24,7 +24,7 @@ jobs:
         run: sudo rm -rf /srv/*
 
       - name: Sync files
-        run: sudo rsync -av srv/* /srv/* --delete
+        run: sudo rsync -av srv/* /srv/ --delete
       
       - name: Deploy containers
         run: sudo docker-compose up -d
