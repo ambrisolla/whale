@@ -59,6 +59,8 @@ services:
     image: mysql:latest
     container_name: mysql
     restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       whale-network:
         ipv4_address: 192.168.85.6
