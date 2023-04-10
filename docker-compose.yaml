@@ -68,7 +68,9 @@ services:
       - /var/lib/mysql:/var/lib/mysql
   
   sym:
-    build: ./dockerfiles/sym.Dockerfile
+    build: 
+      dockerfile: ./dockerfiles/sym.Dockerfile
+      context: .
     container_name: sym
     restart: always
     environment:
