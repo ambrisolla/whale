@@ -26,6 +26,11 @@ jobs:
       - name: Sync files
         run: sudo rsync -av srv/* /srv/ --delete
       
+      - name: Clone SYM repository
+        uses: actions/checkout@v3
+        with:
+          repository: ambrisolla/sym
+
       - name: Set env-file
         run: |
           echo "export MYSQL_HOST=${{vars.MYSQL_HOST}}" > .env
