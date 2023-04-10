@@ -26,8 +26,10 @@ jobs:
       - name: Sync files
         run: sudo rsync -av srv/* /srv/ --delete
       
-      - name: Clone SYM repository
-        run : git clone https://github.com/ambrisolla/sym.git
+      - name: Build SYM image
+        run : |
+          cd sym;
+          sudo docker build -t sym:latest .
 
       - name: Set env-file
         run: |

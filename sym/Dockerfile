@@ -1,11 +1,12 @@
 FROM alpine:latest
 
-RUN mkdir -p /app ; \
-    apk add --update --no-cache python3; \
+RUN apk add --update --no-cache python3 git; \
     python3 -m ensurepip; \
     pip3 install --no-cache --upgrade \
       pip setuptools requests mysql-connector-python;
 
-COPY sym/* /app
+RUN git clone https://github.com/ambrisolla/sym.git 
+
+RUN mkdir -p /app ; cp -r sym/* /app/ 
 
 CMD [ "/app/run.py" ]
