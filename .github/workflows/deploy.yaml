@@ -13,6 +13,9 @@ jobs:
       - name: Stop containers
         run: sudo docker-compose stop
       
+      - name: Remove containers
+        run: sudo docker-compose rm -f
+      
       - name: Sync files
         run: sudo rsync -av srv/* /srv/* --delete
       
