@@ -28,7 +28,7 @@ jobs:
       
       - name: Set env-file
         run: |
-          echo "export MYSQL_ROOT_PASSWORD=${secrets.MYSQL_ROOT_PASSWORD}" > .env
+          echo "export MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}" > .env
 
 
       - name: Deploy containers
