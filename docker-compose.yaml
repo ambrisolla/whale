@@ -82,7 +82,26 @@ services:
       MYSQL_DB: "sym" 
       MYSQL_PORT: 3306 
       MYSQL_USER: "${MYSQL_USER}" 
-      MYSQL_PASS: "${MYSQL_ROOT_PASSWORD}" 
+      MYSQL_PASS: "${MYSQL_ROOT_PASSWORD}"
+  
+  rundeck:
+    image: rundeck/rundeck:4.10.1
+    container_name: sym
+    restart: always
+    ports:
+      - 4440:4440
+    environment:
+      RUNDECK_DATABASE_DRIVER: org.mariadb.jdbc.Driver
+      RUNDECK_DATABASE_USERNAME: "${MYSQL_USER}"
+      RUNDECK_DATABASE_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      RUNDECK_DATABASE_URL: jdbc:mysql://192.168.85.6/rundeck?autoReconnect=true&useSSL=false
+      RUNDECK_GRAILS_URL: localhost:4440
+    networks:
+      whale-network:
+        ipv4_address: 192.168.85.7
+    volumes:
+      - /var/lib/rundeck:/home/rundeck/server/data
+
 
 networks:
   whale-network:
