@@ -14,7 +14,11 @@ jobs:
         run: sudo docker-compose stop
       
       - name: Remove containers
-        run: sudo docker ps -a --format '{{.Names}}' | xargs sudo docker rm -f
+        run: |
+          for c in `sudo docker ps -a --format '{{.Names}}'` 
+          do
+            sudo docker rm -f $c
+          done
 
       
       - name: Sync files
