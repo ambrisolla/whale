@@ -69,7 +69,7 @@ services:
   
   sym:
     image: sym:latest
-    container_name: sym2
+    container_name: sym
     restart: always
     networks:
       whale-network:
@@ -86,7 +86,7 @@ services:
   
   rundeck:
     image: rundeck/rundeck:4.10.1
-    container_name: sym
+    container_name: rundeck
     restart: always
     ports:
       - 4440:4440
