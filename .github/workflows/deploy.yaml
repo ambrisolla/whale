@@ -14,7 +14,8 @@ jobs:
         run: sudo docker-compose stop
       
       - name: Remove containers
-        run: sudo docker-compose rm -f
+        run: sudo docker ps -a --format '{{.Names}}' | xargs sudo docker rm -f
+
       
       - name: Sync files
         run: sudo rsync -av srv/* /srv/* --delete
