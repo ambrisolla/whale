@@ -32,4 +32,4 @@ jobs:
 
 
       - name: Deploy containers
-        run: sudo docker-compose --enf-file .env up -d
+        run: sudo docker-compose --env-file .env up -d
