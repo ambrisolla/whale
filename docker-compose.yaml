@@ -69,7 +69,7 @@ services:
   
   sym:
     image: sym:latest
-    container_name: sym
+    container_name: sym2
     restart: always
     networks:
       whale-network:
