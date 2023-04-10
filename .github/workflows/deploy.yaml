@@ -28,7 +28,11 @@ jobs:
       
       - name: Set env-file
         run: |
-          echo "export MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}" > .env
+          echo "export MYSQL_ROOT_PASSWORD=${{vars.MYSQL_HOST}}" > .env
+          echo "export MYSQL_ROOT_PASSWORD=${{vars.MYSQL_USER}}" >> .env
+          echo "export MYSQL_ROOT_PASSWORD=${{vars.NOTION_BUDGET_DB}}" >> .env
+          echo "export MYSQL_ROOT_PASSWORD=${{secrets.NOTION_API_KEY}}" >> .env
+          echo "export MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}" >> .env
 
 
       - name: Deploy containers
