@@ -27,9 +27,7 @@ jobs:
         run: sudo rsync -av srv/* /srv/ --delete
       
       - name: Clone SYM repository
-        uses: actions/checkout@v3
-        with:
-          repository: ambrisolla/sym
+        run : git clone https://github.com/ambrisolla/sym.git
 
       - name: Set env-file
         run: |
