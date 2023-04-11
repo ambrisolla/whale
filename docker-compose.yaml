@@ -84,6 +84,7 @@ services:
     restart: always
     ports:
       - 4440:4440
+    user: "${UID}:${GID}"
     environment:
       RUNDECK_DATABASE_DRIVER: org.mariadb.jdbc.Driver
       RUNDECK_DATABASE_USERNAME: "${MYSQL_USER}"
@@ -93,14 +94,14 @@ services:
     networks:
       whale-network:
         ipv4_address: 192.168.85.8
-    #volumes:
-    #  - /var/lib/rundeck/etc:/home/rundeck/etc
-    #  - /var/lib/rundeck/user-assets:/home/rundeck/user-assets
-    #  - /var/lib/rundeck/server:/home/rundeck/server
-    #  - /var/lib/rundeck/repository:/home/rundeck/repository
-    #  - /var/lib/rundeck/var:/home/rundeck/var
-    #  - /var/lib/rundeck/libext:/home/rundeck/libext
-    #  - /var/lib/rundeck/projects:/home/rundeck/projects
+    volumes:
+      - /var/lib/rundeck/etc:/home/rundeck/etc
+      - /var/lib/rundeck/user-assets:/home/rundeck/user-assets
+      - /var/lib/rundeck/server:/home/rundeck/server
+      - /var/lib/rundeck/repository:/home/rundeck/repository
+      - /var/lib/rundeck/var:/home/rundeck/var
+      - /var/lib/rundeck/libext:/home/rundeck/libext
+      - /var/lib/rundeck/projects:/home/rundeck/projects
 networks:
   whale-network:
     driver: bridge
