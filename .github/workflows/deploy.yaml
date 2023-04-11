@@ -21,7 +21,11 @@ jobs:
           done
       
       - name: Remove images
-        run: sudo docker image rm -f `sudo docker image ls --format '{{.ID}}'`
+        run: |
+          for id in `sudo docker image ls --format '{{.ID}}'`
+          do
+            sudo docker image rm -f ${id}
+          done
 
       - name: Remove config files
         run: sudo rm -rf /srv/*
@@ -32,7 +36,7 @@ jobs:
       - name: Build SYM image
         run : |
           cd sym;
-          sudo docker build -t sym:latest .
+          sudo docker build --no-cache -t sym:latest .
 
       - name: Set env-file
         run: |
