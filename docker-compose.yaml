@@ -99,7 +99,7 @@ services:
     depends_on:
       - mysql
     volumes:
-      - /var/lib/rundeck/etc:/home/rundeck/server/data
+      - /var/lib/rundeck/server:/home/rundeck/server
       #- /var/lib/rundeck/etc:/home/rundeck/etc
       #- /var/lib/rundeck/user-assets:/home/rundeck/user-assets
       #- /var/lib/rundeck/server:/home/rundeck/server
