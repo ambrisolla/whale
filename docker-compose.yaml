@@ -84,7 +84,7 @@ services:
     restart: always
     ports:
       - 4440:4440
-    user: "${UID}:${GID}"
+    user: "1000:1"
     environment:
       RUNDECK_DATABASE_DRIVER: org.mariadb.jdbc.Driver
       RUNDECK_DATABASE_USERNAME: "${MYSQL_USER}"
