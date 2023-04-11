@@ -73,7 +73,7 @@ services:
     restart: always
     networks:
       whale-network:
-        ipv4_address: 192.168.85.8
+        ipv4_address: 192.168.85.7
     environment:
       NOTION_API_KEY: "${NOTION_API_KEY}" 
       NOTION_BUDGET_DB: "${NOTION_BUDGET_DB}" 
