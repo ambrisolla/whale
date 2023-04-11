@@ -93,14 +93,14 @@ services:
     networks:
       whale-network:
         ipv4_address: 192.168.85.8
-    volumes:
-      - /var/lib/rundeck/etc:/home/rundeck/etc
-      - /var/lib/rundeck/user-assets:/home/rundeck/user-assets
-      - /var/lib/rundeck/server:/home/rundeck/server
-      - /var/lib/rundeck/repository:/home/rundeck/repository
-      - /var/lib/rundeck/var:/home/rundeck/var
-      - /var/lib/rundeck/libext:/home/rundeck/libext
-      - /var/lib/rundeck/projects:/home/rundeck/projects
+    #volumes:
+    #  - /var/lib/rundeck/etc:/home/rundeck/etc
+    #  - /var/lib/rundeck/user-assets:/home/rundeck/user-assets
+    #  - /var/lib/rundeck/server:/home/rundeck/server
+    #  - /var/lib/rundeck/repository:/home/rundeck/repository
+    #  - /var/lib/rundeck/var:/home/rundeck/var
+    #  - /var/lib/rundeck/libext:/home/rundeck/libext
+    #  - /var/lib/rundeck/projects:/home/rundeck/projects
 networks:
   whale-network:
     driver: bridge
