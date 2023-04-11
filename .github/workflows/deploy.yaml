@@ -19,6 +19,9 @@ jobs:
           do
             sudo docker rm -f $c
           done
+      
+      - name: Remove images
+        run: sudo docker image rm -f `sudo docker image ls --format '{{.ID}}'`
 
       - name: Remove config files
         run: sudo rm -rf /srv/*
