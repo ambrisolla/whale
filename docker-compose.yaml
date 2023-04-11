@@ -17,7 +17,6 @@ services:
       - /srv/nginx/conf.d:/etc/nginx/conf.d
       #- /srv/nginx/certs:/etc/nginx/certs
       #- /srv/nginx/www:/www
-
   dns-server:
     image: technitium/dns-server
     container_name: dns-server
@@ -29,7 +28,6 @@ services:
         ipv4_address: 192.168.85.3
     volumes:
       - /etc/dns:/etc/dns
-
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -41,7 +39,6 @@ services:
       - /var/lib/prometheus/data:/prometheus/data
       - /srv/prometheus/targets:/etc/prometheus/targets
       - /srv/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-  
   grafana:
     image: grafana/grafana:latest-ubuntu
     container_name: grafana
@@ -54,7 +51,6 @@ services:
         ipv4_address: 192.168.85.5
     volumes:
       - /var/lib/grafana:/var/lib/grafana
-  
   mysql:
     image: mariadb:latest
     container_name: mysql
@@ -66,7 +62,6 @@ services:
         ipv4_address: 192.168.85.6
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-  
   sym:
     image: sym:latest
     container_name: sym
@@ -82,8 +77,7 @@ services:
       MYSQL_DB: "sym" 
       MYSQL_PORT: 3306 
       MYSQL_USER: "${MYSQL_USER}" 
-      MYSQL_PASS: "${MYSQL_ROOT_PASSWORD}"
-    
+      MYSQL_PASS: "${MYSQL_ROOT_PASSWORD}"    
   rundeck:
     image: rundeck/rundeck:4.10.1
     container_name: rundeck
@@ -100,9 +94,13 @@ services:
       whale-network:
         ipv4_address: 192.168.85.8
     volumes:
-      - /var/lib/rundeck:/home/rundeck
-
-
+      - /var/lib/rundeck/etc:/home/rundeck/etc
+      - /var/lib/rundeck/user-assets:/home/rundeck/user-assets
+      - /var/lib/rundeck/server:/home/rundeck/server
+      - /var/lib/rundeck/repository:/home/rundeck/repository
+      - /var/lib/rundeck/var:/home/rundeck/var
+      - /var/lib/rundeck/libext:/home/rundeck/libext
+      - /var/lib/rundeck/projects:/home/rundeck/projects
 networks:
   whale-network:
     driver: bridge
