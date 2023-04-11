@@ -92,6 +92,7 @@ services:
       RUNDECK_DATABASE_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
       RUNDECK_DATABASE_URL: jdbc:mysql://192.168.85.6/rundeck?autoReconnect=true&useSSL=false
       RUNDECK_SERVER_ADDRESS: 0.0.0.0
+      RUNDECK_GRAILS_URL: http://rundeck.imbrisa.io
     networks:
       whale-network:
         ipv4_address: 192.168.85.8
