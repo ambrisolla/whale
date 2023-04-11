@@ -13,19 +13,22 @@ jobs:
       - name: Stop containers
         run: sudo docker-compose stop
       
-      - name: Remove containers
-        run: |
-          for c in `sudo docker ps -a --format '{{.Names}}'` 
-          do
-            sudo docker rm -f $c
-          done
+      - name: Docker prune
+        run: sudo docker system prune -f
       
-      - name: Remove images
-        run: |
-          for id in `sudo docker image ls --format '{{.ID}}'`
-          do
-            sudo docker image rm -f ${id}
-          done
+      #- name: Remove containers
+      #  run: |
+      #    for c in `sudo docker ps -a --format '{{.Names}}'` 
+      #    do
+      #      sudo docker rm -f $c
+      #    done
+      #
+      #- name: Remove images
+      #  run: |
+      #    for id in `sudo docker image ls --format '{{.ID}}'`
+      #    do
+      #      sudo docker image rm -f ${id}
+      #    done
 
       - name: Remove config files
         run: sudo rm -rf /srv/*
@@ -45,7 +48,6 @@ jobs:
           echo "export NOTION_BUDGET_DB=${{vars.NOTION_BUDGET_DB}}" >> .env
           echo "export NOTION_API_KEY=${{secrets.NOTION_API_KEY}}" >> .env
           echo "export MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}" >> .env
-
 
       - name: Deploy containers
         run: sudo docker-compose --env-file .env up -d
