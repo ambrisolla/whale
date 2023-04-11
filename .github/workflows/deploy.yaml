@@ -37,3 +37,8 @@ jobs:
 
       - name: Deploy containers
         run: sudo docker-compose --env-file .env up -d
+      
+      - name: Change Rundeck password
+        run: |
+          sudo docker exec -it rundeck \
+            sed -i "s/admin:admin/admin:${{secrets.RUNDECK_ADMIN_PASSWORD}}/g" /home/rundeck/server/config/realm.properties
