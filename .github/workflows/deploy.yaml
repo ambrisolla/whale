@@ -40,6 +40,5 @@ jobs:
       
       - name: Change Rundeck password
         run: |
-          sudo docker exec -it rundeck \
-            sed -i "s/admin:admin/admin:${{secrets.RUNDECK_ADMIN_PASSWORD}}/g" /home/rundeck/server/config/realm.properties
+          sudo docker exec rundeck sed -i "s/admin:admin/admin:${{secrets.RUNDECK_ADMIN_PASSWORD}}/g" /home/rundeck/server/config/realm.properties
           sudo docker restart rundeck
