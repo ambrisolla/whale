@@ -19,6 +19,9 @@ jobs:
       - name: Remove config files
         run: sudo rm -rf /srv/*
 
+      - name: Remove all images
+        run: sudo docker images -q | xargs docker image rm
+
       - name: Sync files
         run: sudo rsync -av srv/* /srv/ --delete
       
