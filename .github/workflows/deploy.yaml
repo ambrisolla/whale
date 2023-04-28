@@ -20,7 +20,7 @@ jobs:
         run: sudo rm -rf /srv/*
 
       - name: Remove all images
-        run: sudo docker images -q | xargs docker image rm
+        run: sudo docker images -q | xargs sudo docker image rm
 
       - name: Sync files
         run: sudo rsync -av srv/* /srv/ --delete
