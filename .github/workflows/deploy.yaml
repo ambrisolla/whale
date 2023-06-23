@@ -23,7 +23,7 @@ jobs:
         run: |
           for c in `sudo docker images -q`
           do
-            sudo docker image rm
+            sudo docker image rm ${c}
           done
 
       - name: Sync files
