@@ -81,28 +81,6 @@ services:
         ipv4_address: 192.168.85.6
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-  sym:
-    image: sym:latest
-    container_name: sym
-    restart: always
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-      - 1.1.1.1
-    networks:
-      whale-network:
-        ipv4_address: 192.168.85.7
-    depends_on:
-      - mysql
-    environment:
-      NOTION_API_KEY: "${NOTION_API_KEY}" 
-      NOTION_BUDGET_DB: "${NOTION_BUDGET_DB}" 
-      NOTION_URL: "https://api.notion.com" 
-      MYSQL_HOST: "${MYSQL_HOST}" 
-      MYSQL_DB: "sym" 
-      MYSQL_PORT: 3306 
-      MYSQL_USER: "${MYSQL_USER}" 
-      MYSQL_PASS: "${MYSQL_ROOT_PASSWORD}"    
   rundeck:
     image: rundeck/rundeck:4.10.1
     container_name: rundeck
