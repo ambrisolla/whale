@@ -60,6 +60,7 @@ services:
     user: "${UID}:${GID}"
     environment:
       no_proxy: "${NO_PROXY}"
+      GF_FEATURE_TOGGLES_ENABLE: publicDashboards
     networks:
       whale-network:
         ipv4_address: 192.168.85.5
