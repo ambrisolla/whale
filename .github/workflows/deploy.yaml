@@ -29,17 +29,10 @@ jobs:
       - name: Sync files
         run: sudo rsync -av srv/* /srv/ --delete
       
-      - name: Build SYM image
-        run : |
-          cd sym;
-          sudo docker build --no-cache -t sym:latest .
-
       - name: Set env-file
         run: |
           echo "export MYSQL_HOST=${{vars.MYSQL_HOST}}" > .env
           echo "export MYSQL_USER=${{vars.MYSQL_USER}}" >> .env
-          echo "export NOTION_BUDGET_DB=${{vars.NOTION_BUDGET_DB}}" >> .env
-          echo "export NOTION_API_KEY=${{secrets.NOTION_API_KEY}}" >> .env
           echo "export MYSQL_ROOT_PASSWORD=${{secrets.MYSQL_ROOT_PASSWORD}}" >> .env
 
       - name: Deploy containers
